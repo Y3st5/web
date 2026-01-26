@@ -73,15 +73,6 @@
     box-shadow: 0 2px 8px rgba(251,191,36,0.08);
     transition: background 0.2s, border 0.2s;
 }
-.filters-bar {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background: #d97706;
-    margin: 3px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-}
 @media (max-width: 768px) {
     .filters-toggle {
         display: flex;
@@ -93,8 +84,7 @@
         background: #fff7ed;
         border: 2px solid #fbbf24;
         border-radius: 1rem;
-        padding: 1rem;
-        margin-bottom: 1rem;
+        padding: 0.5rem;
         box-shadow: 0 4px 16px rgba(146,64,14,0.08);
         z-index: 100;
     }
@@ -200,17 +190,17 @@ nav a:hover, nav a.active {
 /* Filters Section */
 .filters {
     background: white;
-    padding: 2rem 1rem; 
+    padding: 1.5rem 1rem; 
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
-    top: 80px;
+    top: 70px;
     z-index: 100;
 }
 
 .filters-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
     justify-content: center;
 }
@@ -266,7 +256,7 @@ nav a:hover, nav a.active {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
     gap: 2rem;
 }
 
@@ -604,7 +594,7 @@ nav a:hover, nav a.active {
     }
 
     .filters-content {
-        flex-direction:row;
+        flex-direction:row; 
         gap: 0.2rem;
     }
 
@@ -613,7 +603,7 @@ nav a:hover, nav a.active {
     }
 
     .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1rem;
     }
 
