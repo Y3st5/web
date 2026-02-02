@@ -324,8 +324,8 @@ nav a:hover {
 
 .about-map iframe {
     width: 100%;
-    max-width: 350px;
-    height: 250px;
+    max-width: 450px;
+    height: 350px;
     border: 0;
     border-radius: 0.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
