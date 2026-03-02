@@ -629,8 +629,317 @@ nav a:hover, nav a.active {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Animaciones de entrada */
+.hero {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h2 {
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero p {
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* Productos con delay progresivo */
 .product-card {
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeInUp 0.6s ease-out both;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+.product-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Hover en cards */
+.product-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge animado */
+.product-badge {
+    transition: all 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.product-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Imagen del producto */
+.product-image {
+    transition: all 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+/* Botones con efecto shimmer */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(217, 119, 6, 0.4);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Filtros animados */
+.filter-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Buscador animado */
+.search-box {
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+    transform: scale(1.02);
+}
+
+/* Categorías */
+.category-section {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.category-header {
+    transition: all 0.3s ease;
+}
+
+.category-header:hover {
+    transform: translateX(10px);
+}
+
+.category-icon {
+    transition: all 0.3s ease;
+}
+
+.category-header:hover .category-icon {
+    animation: bounce 0.6s ease;
+}
+
+/* Carrito flotante */
+.cart-button {
+    animation: float 3s ease-in-out infinite;
+}
+
+.cart-button:hover {
+    animation: none;
+    transform: scale(1.15);
+}
+
+/* Carrito sidebar */
+.cart-sidebar {
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+/* Items del carrito */
+.cart-item {
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    background: #fffbeb;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.quantity-btn {
+    transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background: #fbbf24;
+    border-color: #d97706;
+    transform: scale(1.1);
+}
+
+/* Header */
+header {
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo */
+.logo {
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navegación */
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #d97706;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+/* Menú hamburguesa */
+.menu-toggle {
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #fbbf24;
+    transform: rotate(90deg);
+}
+
+/* Estrellas de rating */
+.star {
+    transition: all 0.2s ease;
+}
+
+.product-card:hover .star {
+    animation: pulse 1s ease infinite;
+}
+
+/* Links del footer en categorías */
+.category-description {
+    transition: all 0.3s ease;
+}
+
+.category-description:hover {
+    color: #d97706;
+    transform: translateX(5px);
+}
+
+/* Smooth scrolling para toda la página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Transiciones globales */
+* {
+    transition-property: background, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
 /* Cart Button */
