@@ -479,6 +479,39 @@
         </div>
     </div>
 
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-content">
+                <div class="modal-image">
+                    <img id="modalProductImage" src="" alt="">
+                    <span class="modal-badge" id="modalBadge"></span>
+                </div>
+                <div class="modal-details">
+                    <div class="modal-category" id="modalCategory"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <div class="modal-rating" id="modalRating"></div>
+                    <p class="modal-description" id="modalDescription"></p>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-quantity">
+                        <label for="modalQuantityInput">Cantidad:</label>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" id="qtyMinus">-</button>
+                            <input type="number" id="modalQuantityInput" value="1" min="1" max="99">
+                            <button class="qty-btn" id="qtyPlus">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary modal-add-to-cart" id="modalAddToCart">
+                        <div class="btn-icon"></div>
+                        Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="Catalogo.js"></script>
 </body>
 </html>

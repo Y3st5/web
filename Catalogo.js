@@ -192,3 +192,180 @@ searchInput.addEventListener('input', function() {
 
 // Initialize cart
 updateCartUI();
+
+// ==========================================
+// PRODUCT MODAL FUNCTIONALITY
+// ==========================================
+
+// Modal elements
+const productModal = document.getElementById('productModal');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalAddToCart = document.getElementById('modalAddToCart');
+const qtyMinus = document.getElementById('qtyMinus');
+const qtyPlus = document.getElementById('qtyPlus');
+const modalQuantityInput = document.getElementById('modalQuantityInput');
+
+// Modal data elements
+const modalProductImage = document.getElementById('modalProductImage');
+const modalBadge = document.getElementById('modalBadge');
+const modalCategory = document.getElementById('modalCategory');
+const modalTitle = document.getElementById('modalTitle');
+const modalRating = document.getElementById('modalRating');
+const modalDescription = document.getElementById('modalDescription');
+const modalPrice = document.getElementById('modalPrice');
+
+// Current product data
+let currentProduct = null;
+
+// Open modal with product data
+function openProductModal(card) {
+    // Get product data from card
+    const imageStyle = card.querySelector('.product-image').style.backgroundImage;
+    // Fix the URL extraction - remove url("...") wrapper
+    let image = imageStyle.replace(/url\(/g, '').replace(/"/g, '').replace(/\)/g, '');
+    
+    const category = card.querySelector('.product-category').textContent;
+    const title = card.querySelector('.product-title').textContent;
+    const description = card.querySelector('.product-description').textContent;
+    const priceText = card.querySelector('.product-price').textContent;
+    const ratingContainer = card.querySelector('.product-rating');
+    const badge = card.querySelector('.product-badge');
+    const addToCartBtn = card.querySelector('.add-to-cart');
+    
+    // Extract rating
+    const stars = ratingContainer.querySelectorAll('.star').length;
+    const emptyStars = ratingContainer.querySelectorAll('.star.empty').length;
+    const fullStars = stars - emptyStars;
+    const ratingText = ratingContainer.querySelector('.rating-text').textContent;
+    
+    // Store current product data
+    currentProduct = {
+        id: addToCartBtn.dataset.id,
+        name: addToCartBtn.dataset.name,
+        price: parseFloat(addToCartBtn.dataset.price),
+        image: addToCartBtn.dataset.image
+    };
+    
+    // Populate modal
+    modalProductImage.src = image;
+    modalCategory.textContent = category;
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+    modalPrice.textContent = priceText;
+    
+    // Set badge
+    if (badge) {
+        modalBadge.textContent = badge.textContent;
+        modalBadge.className = 'modal-badge ' + badge.className.replace('product-badge', '');
+        modalBadge.style.display = 'block';
+    } else {
+        modalBadge.style.display = 'none';
+    }
+    
+    // Set rating stars
+    let starsHtml = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < fullStars) {
+            starsHtml += '<div class="star"></div>';
+        } else {
+            starsHtml += '<div class="star empty"></div>';
+        }
+    }
+    starsHtml += `<span class="rating-text">${ratingText}</span>`;
+    modalRating.innerHTML = starsHtml;
+    
+    // Reset quantity
+    modalQuantityInput.value = 1;
+    
+    // Show modal
+    productModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+    productModal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProduct = null;
+}
+
+// Event listeners for opening modal
+document.querySelectorAll('.product-card').forEach(card => {
+    // Ensure cursor is pointer
+    card.style.cursor = 'pointer';
+    
+    card.addEventListener('click', function(e) {
+        // Don't open modal if clicking on add to cart button
+        if (!e.target.closest('.add-to-cart')) {
+            openProductModal(this);
+        }
+    });
+});
+
+// Also make cards clickable via onclick as fallback
+document.querySelectorAll('.product-card').forEach((card, index) => {
+    card.onclick = function(e) {
+        if (!e.target.closest('.add-to-cart')) {
+            openProductModal(this);
+        }
+    };
+});
+
+// Close modal events
+modalClose.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', closeModal);
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && productModal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Quantity controls
+qtyMinus.addEventListener('click', function() {
+    let currentQty = parseInt(modalQuantityInput.value);
+    if (currentQty > 1) {
+        modalQuantityInput.value = currentQty - 1;
+    }
+});
+
+qtyPlus.addEventListener('click', function() {
+    let currentQty = parseInt(modalQuantityInput.value);
+    if (currentQty < 99) {
+        modalQuantityInput.value = currentQty + 1;
+    }
+});
+
+// Add to cart from modal
+modalAddToCart.addEventListener('click', function() {
+    if (currentProduct) {
+        const quantity = parseInt(modalQuantityInput.value);
+        
+        // Add multiple items based on quantity
+        for (let i = 0; i < quantity; i++) {
+            addToCart({
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
+                image: currentProduct.image
+            });
+        }
+        
+        // Show feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = '<div class="btn-icon"></div> ¡Agregado!';
+        this.style.background = '#059669';
+        
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.background = '';
+        }, 1500);
+        
+        // Close modal after adding
+        setTimeout(() => {
+            closeModal();
+        }, 500);
+    }
+});
