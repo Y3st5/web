@@ -76,9 +76,10 @@ function updateQuantity(productId, newQuantity) {
     }
 }
 window.updateQuantity = updateQuantity;
-// Función para redondear al alza al múltiplo de 0.10 más cercano
+// Redondeo comercial al múltiplo de 0.10 más cercano:
+// se queda en 0.30 si es < 0.35, sube a 0.40 si es >= 0.35.
 function roundUpTo10(value) {
-    return Math.ceil(value / 0.10) * 0.10;
+    return Math.round(value / 0.10) * 0.10;
 }
 
 // Actualizar la interfaz del carrito
@@ -224,7 +225,7 @@ function proceedToWhatsApp() {
     }
 
     // Build message
-    let message = '🍞 *Pedido - La Casa Del Pan* 🥖\n\n';
+    let message = '*Pedido - La Casa Del Pan*\n\n';
     message += '*Productos:*\n';
     
     cart.forEach(item => {
@@ -235,7 +236,7 @@ function proceedToWhatsApp() {
     
     message += `─────────────────\n`;
     message += `*Total: S/${cartTotal.toFixed(2)}*\n\n`;
-    message += '¡Gracias por tu preferencia! 🙌';
+    message += '¡Gracias por tu preferencia!';
     
     // Encode and open WhatsApp
     const encodedMessage = encodeURIComponent(message);
