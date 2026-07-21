@@ -256,11 +256,6 @@ nav a:hover {
     transform: scale(1.08);
 }
 
-.gallery-item:hover {
-    transform: scale(1.05);
-}
-
-
 .gallery-overlay {
     position: absolute;
     inset: 0;
@@ -275,16 +270,6 @@ nav a:hover {
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
-}
-
-.badge {
-    background: #d97706;
-    color: white;
-    padding: 0.4rem 1.1rem;
-    border-radius: 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(146,64,14,0.10);
 }
 
 .badge {
@@ -573,45 +558,6 @@ footer {
         background: #fbbf24;
         color: #fff;
         padding-left: 2.2rem;
-    }
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 44px;
-        height: 44px;
-        background: #fff7ed;
-        border: 2px solid #fbbf24;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 2100;
-        margin-left: 1rem;
-        box-shadow: 0 2px 8px rgba(251,191,36,0.12);
-        transition: background 0.2s, border 0.2s;
-    }
-    .menu-toggle:hover {
-        background: #fbbf24;
-        border: 2px solid #d97706;
-    }
-    .menu-toggle .bar {
-        width: 28px;
-        height: 4px;
-        background: #d97706;
-        margin: 3px 0;
-        border-radius: 2px;
-        transition: all 0.3s;
-    }
-    .menu-toggle.open .bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-        background: #92400e;
-    }
-    .menu-toggle.open .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.open .bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-        background: #92400e;
     }
     .menu-toggle {
         display: flex;
@@ -920,4 +866,109 @@ nav a:hover::after {
 /* Animación suave para todos los elementos interactivos */
 a, button, input, textarea, .product-card, .info-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== TOAST / NOTIFICACIONES ===== */
+.toast-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 400px;
+    width: calc(100% - 3rem);
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    cursor: default;
+}
+
+.toast.toast-out {
+    animation: toastOut 0.35s ease-in forwards;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    border-left: 4px solid #14532d;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    border-left: 4px solid #7f1d1d;
+}
+
+.toast-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.toast-close {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.toast-close:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes toastOut {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%) scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-container {
+        top: 1rem;
+        right: 1rem;
+        width: calc(100% - 2rem);
+    }
+    .toast {
+        font-size: 0.9rem;
+        padding: 0.85rem 1rem;
+    }
 }

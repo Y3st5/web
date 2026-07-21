@@ -76,10 +76,16 @@ function updateQuantity(productId, newQuantity) {
     }
 }
 window.updateQuantity = updateQuantity;
+// Función para redondear al alza al múltiplo de 0.10 más cercano
+function roundUpTo10(value) {
+    return Math.ceil(value / 0.10) * 0.10;
+}
+
 // Actualizar la interfaz del carrito
 function updateCartUI() {
     cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-    cartTotal = cart.reduce((total, item) => total + Math.round(item.price * item.quantity * 100) / 100, 0);
+    const rawTotal = cart.reduce((total, item) => total + Math.round(item.price * item.quantity * 100) / 100, 0);
+    cartTotal = roundUpTo10(rawTotal);
     
     cartCountElement.textContent = cartCount;
     subtotalElement.textContent = `S/${cartTotal.toFixed(2)}`;
