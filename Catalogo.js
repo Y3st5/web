@@ -196,6 +196,59 @@ searchInput.addEventListener('input', function() {
     });
 });
 
+// Scroll listener for header shadow
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Filters toggle for mobile
+const filtersToggle = document.getElementById('filtersToggle');
+const filtersContent = document.getElementById('filtersContent');
+
+if (filtersToggle && filtersContent) {
+    filtersToggle.addEventListener('click', function() {
+        filtersContent.classList.toggle('open');
+    });
+}
+
+// Checkout via WhatsApp
+function proceedToWhatsApp() {
+    if (cart.length === 0) {
+        alert('Tu carrito está vacío. Agrega productos antes de realizar tu pedido.');
+        return;
+    }
+
+    // Build message
+    let message = '🍞 *Pedido - La Casa Del Pan* 🥖\n\n';
+    message += '*Productos:*\n';
+    
+    cart.forEach(item => {
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        message += `• ${item.name}\n`;
+        message += `  Cantidad: ${item.quantity} x S/${item.price.toFixed(2)} = S/${itemTotal}\n\n`;
+    });
+    
+    message += `─────────────────\n`;
+    message += `*Total: S/${cartTotal.toFixed(2)}*\n\n`;
+    message += '¡Gracias por tu preferencia! 🙌';
+    
+    // Encode and open WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/51998956056?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Checkout button event listener
+const checkoutBtn = document.getElementById('checkoutBtn');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', proceedToWhatsApp);
+}
+
 // Initialize cart
 updateCartUI();
 

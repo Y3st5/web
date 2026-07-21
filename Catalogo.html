@@ -55,7 +55,8 @@
     <!-- Filters -->
     <section class="filters">
         <div class="container">
-            <div class="filters-content">
+            <button class="filters-toggle" id="filtersToggle">☰ Filtrar Productos</button>
+            <div class="filters-content" id="filtersContent">
                 <button class="filter-btn active" data-category="todos">Todos</button>
                 <button class="filter-btn" data-category="panes">Panes</button>
                 <button class="filter-btn" data-category="bolleria">Bollería</button>
@@ -472,7 +473,7 @@
                     <span>Total:</span>
                     <span id="total">$2.00</span>
                 </div>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                <button id="checkoutBtn" class="btn btn-primary" style="width:100%; margin-top:1rem;">
                     Proceder al Pago
                 </button>
             </div>
