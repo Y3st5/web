@@ -212,8 +212,31 @@ const filtersToggle = document.getElementById('filtersToggle');
 const filtersContent = document.getElementById('filtersContent');
 
 if (filtersToggle && filtersContent) {
-    filtersToggle.addEventListener('click', function() {
-        filtersContent.classList.toggle('open');
+    filtersToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = filtersContent.classList.toggle('open');
+        filtersToggle.classList.toggle('open', isOpen);
+        filtersToggle.textContent = isOpen ? '✕ Cerrar Filtros' : '☰ Filtrar Productos';
+    });
+
+    // Cerrar el panel al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (!filtersContent.contains(e.target) && !filtersToggle.contains(e.target)) {
+            filtersContent.classList.remove('open');
+            filtersToggle.classList.remove('open');
+            filtersToggle.textContent = '☰ Filtrar Productos';
+        }
+    });
+
+    // Cerrar al seleccionar un filtro
+    filtersContent.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                filtersContent.classList.remove('open');
+                filtersToggle.classList.remove('open');
+                filtersToggle.textContent = '☰ Filtrar Productos';
+            }
+        });
     });
 }
 
