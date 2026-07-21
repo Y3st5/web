@@ -413,6 +413,49 @@ nav a:hover, nav a.active {
     margin-right: 0.5rem;
 }
 
+/* Botón de checkout por WhatsApp */
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp .whatsapp-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0;
+    margin-bottom: 0.15rem;
+    flex-shrink: 0;
+}
+
+.btn-whatsapp .btn-text {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.btn-whatsapp .btn-subtitle {
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+}
+
+.btn-whatsapp:hover::before {
+    left: 100%;
+}
+
 /* Category Sections */
 .category-section {
     margin-bottom: 4rem;
