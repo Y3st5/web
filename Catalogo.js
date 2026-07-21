@@ -96,7 +96,7 @@ function updateCartUI() {
     cartItemsElement.innerHTML = '';
     
     if (cart.length === 0) {
-        cartItemsElement.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">Tu carrito está vacío</p>';
+        cartItemsElement.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">🛒 Tu carrito está vacío. ¡Agrega algo delicioso!</p>';
     } else {
         cart.forEach(item => {
             const cartItem = document.createElement('div');
@@ -415,7 +415,7 @@ modalAddToCart.addEventListener('click', function() {
         
         // Show feedback
         const originalText = this.innerHTML;
-        this.innerHTML = '<div class="btn-icon"></div> ¡Agregado!';
+        this.innerHTML = '<span class="btn-emoji">✅</span> ¡Agregado!';
         this.style.background = '#059669';
         
         setTimeout(() => {
