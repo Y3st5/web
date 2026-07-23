@@ -1414,9 +1414,13 @@ html {
 }
 
 .modal-add-to-cart {
-    width: 100%;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    width: 280px;
+    max-width: 100%;
+    padding: 0.85rem 2rem;
+    font-size: 1.05rem;
+    margin: 0 auto;
+    flex: none;
+    align-self: center;
 }
 
 /* Responsive Modal */
