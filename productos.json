@@ -8,7 +8,7 @@
     "precio_display": "4 x S/1",
     "rating": 4.9,
     "badge": "popular",
-    "imagen_url": "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanFrances.jpg"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "precio_display": "4 x S/1",
     "rating": 4.7,
     "badge": "popular",
-    "imagen_url": "https://images.unsplash.com/photo-1568471173242-461f0a730452?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanCiabatta.jpg"
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "precio_display": "4 x S/1",
     "rating": 4.7,
     "badge": null,
-    "imagen_url": "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanBaguetino.jpg"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "precio_display": "3 x S/1",
     "rating": 4.8,
     "badge": "nuevo",
-    "imagen_url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanIntegral.jpg"
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "precio_display": "3 x S/1",
     "rating": 4.8,
     "badge": "nuevo",
-    "imagen_url": "https://images.unsplash.com/photo-1606101206420-c4d3eb04c3cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanCamote.jpg"
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "precio_display": "3 x S/1",
     "rating": 4.8,
     "badge": "nuevo",
-    "imagen_url": "https://images.unsplash.com/photo-1583527976767-cbb5ee6c4b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanCaracol.jpg"
   },
   {
     "id": 7,
@@ -140,7 +140,18 @@
     "precio_display": "3 x S/1",
     "rating": 4.7,
     "badge": null,
-    "imagen_url": "https://images.unsplash.com/photo-1606101206420-c4d3eb04c3cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    "imagen_url": "img/PanYema.jpg"
+  },
+  {
+    "id": 14,
+    "nombre": "Torta Helada",
+    "categoria": "pasteles",
+    "descripcion": "Torta helada con crema pastelera y frutas frescas de estación. Un postre ligero y refrescante.",
+    "precio": 18.00,
+    "precio_display": "S/18.00",
+    "rating": 4.7,
+    "badge": null,
+    "imagen_url": "img/TortaHelada.jpg"
   }
 ]
 
