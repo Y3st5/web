@@ -421,7 +421,7 @@ function proceedToWhatsApp() {
     
     // Encode and open WhatsApp
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${numeroJuan}?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${numeroWilliams}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
 }
 //numeros de contacto para WhatsApp
