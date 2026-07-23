@@ -214,10 +214,13 @@ function updateQuantity(productId, newQuantity) {
     }
 }
 window.updateQuantity = updateQuantity;
-// Redondeo comercial al múltiplo de 0.10 más cercano:
+// Redondeo al múltiplo de 0.10 más cercano:
 // se queda en 0.30 si es < 0.35, sube a 0.40 si es >= 0.35.
+// Usa aritmética de enteros (céntimos) para evitar errores de precisión de punto flotante.
+// Ejemplo: 1.65 debe redondearse a 1.70 (antes fallaba dando 1.60).
 function roundUpTo10(value) {
-    return Math.round(value / 0.10) * 0.10;
+    const centimos = Math.round(value * 100);
+    return Math.round(centimos / 10) * 10 / 100;
 }
 
 // Actualizar la interfaz del carrito
